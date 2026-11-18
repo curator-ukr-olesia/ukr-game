@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Справа № 1861 · квест за романом «Хіба ревуть воли, як ясла повні?»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5ECFE; --surface:#FFFFFF; --ink:#16121B; --muted:#5F5570;
+  --accent:#A43BEB; --accent-deep:#7A1BDE; --soft:#EFDDFC; --line:#DDBFF7;
+  --ok:#23864D; --ok-soft:#E3F5EA; --bad:#C8372F; --bad-soft:#FCE6E4;
+  --grad:linear-gradient(95deg,#7A1BDE 0%,#9B2FE6 50%,#B45CF0 100%);
+  --on-grad:#FFFFFF;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#150F1D; --surface:#21182E; --ink:#F3ECFA; --muted:#B9A9CC;
+    --accent:#C98BFF; --accent-deep:#B271FF; --soft:#33224A; --line:#4B3468;
+    --ok:#6FD49A; --ok-soft:#173527; --bad:#FF8A80; --bad-soft:#3E1C1C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#150F1D; --surface:#21182E; --ink:#F3ECFA; --muted:#B9A9CC;
+  --accent:#C98BFF; --accent-deep:#B271FF; --soft:#33224A; --line:#4B3468;
+  --ok:#6FD49A; --ok-soft:#173527; --bad:#FF8A80; --bad-soft:#3E1C1C;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:17px;line-height:1.55;min-height:100%}
+.wrap{max-width:860px;margin:0 auto;padding:18px 16px 40px}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 12px;padding:12px 18px;background:var(--soft);border-radius:16px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:14px}
+.dots{display:inline-flex;gap:6px}
+.dots i{width:10px;height:10px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:#EE6A5F}.dots i:nth-child(2){background:#E9BE5C}.dots i:nth-child(3){background:#5DC35B}
+.tag{background:var(--grad);color:var(--on-grad);padding:4px 14px;border-radius:999px;font-weight:500}
+
+.banner{position:relative;overflow:hidden;margin:16px 0;border-radius:22px;background:var(--grad);color:var(--on-grad);padding:22px 24px;text-align:center}
+.banner::before,.banner::after{content:"❮❮❮";position:absolute;top:50%;transform:translateY(-50%);font-size:82px;line-height:1;opacity:.13;letter-spacing:-18px;pointer-events:none}
+.banner::before{left:6px}.banner::after{content:"❯❯❯";right:16px}
+.banner h1,.banner h2{margin:0;font-weight:500;letter-spacing:-.01em}
+.banner h1{font-size:clamp(24px,5vw,34px)}
+.banner h2{font-size:clamp(21px,4vw,28px)}
+.banner p{margin:6px 0 0;opacity:.92;font-size:15px}
+
+.evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.frag{border:2px dashed var(--line);border-radius:16px;padding:10px 12px;background:var(--surface);display:flex;align-items:center;gap:10px;min-height:62px}
+.frag .ltr{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:19px;background:var(--soft);color:var(--muted)}
+.frag small{display:block;color:var(--muted);font-size:12.5px;line-height:1.3}
+.frag b{font-size:14px;line-height:1.25;display:block}
+.frag.got{border-style:solid;border-color:var(--accent)}
+.frag.got .ltr{background:var(--grad);color:var(--on-grad)}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;font-size:14px;color:var(--muted);margin:-4px 0 14px}
+.stats strong{color:var(--accent);font-weight:700}
+
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:22px;padding:20px 22px;margin-bottom:14px}
+.card h3{margin:0 0 8px;font-size:19px;font-weight:600}
+.card p{margin:0 0 10px}
+.lead{font-size:17.5px}
+.note{background:var(--soft);border-radius:16px;padding:14px 16px;margin:10px 0;display:flex;gap:12px;align-items:flex-start}
+.note .ic{font-size:22px;line-height:1}
+.accent{color:var(--accent);font-weight:600}
+.step-h{display:flex;align-items:center;gap:10px;margin:22px 0 10px;font-size:22px;font-weight:500}
+.step-h::before{content:"";width:10px;height:10px;border-right:3px solid var(--accent);border-bottom:3px solid var(--accent);transform:rotate(-45deg);margin-right:4px}
+
+.cipher{font-weight:800;font-size:clamp(26px,7vw,40px);letter-spacing:.18em;text-align:center;color:var(--accent);padding:10px 0;word-break:break-all}
+.alpha{overflow-x:auto;border:1.5px solid var(--line);border-radius:14px;padding:10px;margin:8px 0 12px}
+.alpha table{border-collapse:collapse;font-size:14px;font-weight:600}
+.alpha td{border:1px solid var(--line);padding:4px 7px;text-align:center;min-width:28px}
+.alpha tr:first-child td{background:var(--soft)}
+.alpha tr:last-child td{color:var(--muted);font-weight:500}
+
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text]{flex:1 1 220px;font:inherit;font-size:18px;padding:12px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);text-transform:uppercase;letter-spacing:.06em}
+input[type=text]:focus,select:focus{outline:3px solid var(--accent);outline-offset:1px}
+button{font:inherit;cursor:pointer;border:none;border-radius:999px;padding:12px 22px;font-weight:600;font-size:16px;background:var(--grad);color:var(--on-grad)}
+button.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--line)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button:disabled{opacity:.5;cursor:not-allowed}
+
+.q{margin:16px 0 0}
+.q .qt{font-weight:600;margin-bottom:8px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.opt{background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;text-align:left;font-weight:500;padding:11px 14px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad);color:var(--ink);text-decoration:line-through}
+.opt:disabled{opacity:1;cursor:default}
+
+.fb{margin-top:8px;font-size:15px;border-radius:12px;padding:8px 12px}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.bad{background:var(--bad-soft);color:var(--bad)}
+
+.match{display:grid;gap:10px}
+.mrow{display:grid;grid-template-columns:minmax(150px,200px) 1fr;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px}
+.mrow.ok{border-color:var(--ok);background:var(--ok-soft)}
+.mrow.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mrow b{font-weight:600}
+select{font:inherit;font-size:15px;padding:9px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);width:100%}
+@media (min-width:1024px){.wrap{padding:28px 24px 56px}.card{padding:24px 28px}}
+@media (max-width:760px){.evidence{gap:8px}.frag{flex-direction:column;align-items:flex-start;gap:6px}}
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:12px 12px 32px}
+  .top{padding:10px 14px}
+  .pill{font-size:13px}
+  .banner{padding:18px 16px;border-radius:18px}
+  .banner::before,.banner::after{font-size:56px;letter-spacing:-12px}
+  .card{padding:16px;border-radius:18px}
+  .mrow{grid-template-columns:1fr}
+  .evidence{grid-template-columns:repeat(3,1fr)}
+  .frag{padding:8px;align-items:center;text-align:center}
+  .frag small{display:none}
+  .frag b{font-size:12.5px}
+  .opts{grid-template-columns:1fr}
+  .row button{width:100%}
+  input[type=text]{flex-basis:100%;font-size:17px}
+  .step-h{font-size:19px}
+}
+@media (max-width:360px){.dots{display:none}}
+
+.order{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.order li{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--surface)}
+.order li.ok{border-color:var(--ok);background:var(--ok-soft)}
+.order .num{width:30px;height:30px;flex:none;border-radius:50%;background:var(--soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:14px}
+.order .txt{flex:1}
+.order .lbl{display:block;font-size:13px;color:var(--ok);font-weight:600}
+.order .mv{display:flex;flex-direction:column;gap:4px}
+.order .mv button{padding:2px 10px;font-size:13px;background:var(--soft);color:var(--accent);border-radius:8px}
+
+.reward{border:2px solid var(--accent);border-radius:22px;padding:18px 20px;background:var(--soft);text-align:center;margin:16px 0;animation:pop .45s ease-out}
+.reward .big{font-size:46px;font-weight:800;color:var(--accent);line-height:1.1}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.reward{animation:none}}
+
+.cert{text-align:center}
+.cert .rank{font-size:26px;font-weight:700;color:var(--accent);margin:6px 0}
+.center{text-align:center}
+.foot{margin-top:28px;height:8px;border-radius:8px;background:var(--grad)}
+.quote{border-left:4px solid var(--accent);padding:4px 0 4px 14px;font-style:italic;margin:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="logo">znohub.</span>
+    <span class="pill"><span class="dots"><i></i><i></i><i></i></span><span class="tag">українська література</span></span>
+  </header>
+  <div id="app"></div>
+  <div class="foot"></div>
+</div>
+
+<script>
+const ALPHA="АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ".split("");
+const SECRET="РУДЧЕНКО";
+const enc=w=>w.split("").map(c=>ALPHA[(ALPHA.indexOf(c)+1)%ALPHA.length]).join("");
+const norm=s=>(s||"").toUpperCase().replace(/[\s'’ʼ`".,!-]/g,"").replace(/Ё/g,"Е");
+
+const MC1=[
+ {q:"Який жанр має твір?",o:["Соціально-психологічний роман","Історична повість","Роман у віршах","Соціально-побутова драма"],c:0,
+  fb:"Це перший соціально-психологічний роман в українській літературі."},
+ {q:"Під якою назвою роман довелося тимчасово видати?",o:["«Чіпка»","«Пропаща сила»","«Подоріжжя від Полтави до Гадячого»","«Роман з народного життя»"],c:1,
+  fb:"Через цензуру твір вийшов під назвою «Пропаща сила». «Чіпка» — це ранній варіант-повість."},
+ {q:"Звідки взято назву «Хіба ревуть воли, як ясла повні?»",o:["З Книги Буття","З Псалтиря","З Книги Йова","З Євангелія від Матвія"],c:2,
+  fb:"Назва — біблійна, з Книги Йова. Воли — алегорія уярмленого селянства."},
+ {q:"Хто співавтор роману?",o:["Пантелеймон Куліш","Брат Іван Білик","Марко Вовчок","Іван Нечуй-Левицький"],c:1,
+  fb:"Брат письменника, Іван Білик, розкритикував повість «Чіпка», і далі брати працювали разом."}
+];
+const CHARS=["Чижик","Максим Ґудзь","Іван Вареник","Галя","Василь Порох","Грицько Чупруненко"];
+const DESC=[
+ "Судовий секретар, що «полагодить» справу лише за хабар",
+ "Батько Галі, якого в селі прозвали Махамедом",
+ "Батько Чіпки, якого прозвали «двужоном»",
+ "«Польова царівна», що повісилася через злочин чоловіка",
+ "Пияк, що ненавидить панів і допомагає Чіпці написати скаргу",
+ "Колишній підпасич діда Уласа, що досягнув усього чесним шляхом"
+];
+const MC2=[
+ {q:"Чиї це слова: «Розбишацька дочка — розбишацька й жінка!..»",o:["Явдохи","Мотрі","Галі","Христі"],c:2,
+  fb:"Так гірко каже Галя, коли розуміє, що її доля повторює долю матері."},
+ {q:"Чиї це слова: «А без землі — нема волі… Без неї — все пропало…»",o:["Грицька Чупруненка","Чіпки","Максима Ґудзя","Василя Пороха"],c:1,
+  fb:"Це роздуми Чіпки: втрата землі стає поворотом у його долі."}
+];
+const ORDER=[
+ {t:"Дитинство Чіпки, історія його батьків і села Піски",l:"Експозиція"},
+ {t:"У Чіпки забирають землю, він потрапляє в лиху компанію",l:"Зав’язка"},
+ {t:"Крадіжки, одруження з Галею, спроба жити чесно й повернення до розбою",l:"Розвиток дії"},
+ {t:"Вбивство родини Хоменків",l:"Кульмінація"},
+ {t:"Чіпку заарештовують і засилають до Сибіру",l:"Розв’язка"}
+];
+const shuffle=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const FRAGS=[{l:"С",n:"Сейф цензора"},{l:"И",n:"Хата в Пісках"},{l:"ЛА",n:"Зала суду"}];
+
+let S;
+function reset(){
+  let ord=shuffle([0,1,2,3,4]); while(ord.join()==="0,1,2,3,4") ord=shuffle(ord);
+  S={stage:0,ev:0,err:0,frags:[0,0,0],
+     cipher:false,cipherMsg:"",
+     mc1:MC1.map(()=>({a:null,w:[]})),
+     m:{sel:{},ok:{},checked:false},descOrder:shuffle([0,1,2,3,4,5]),
+     mc2:MC2.map(()=>({a:null,w:[]})),
+     ord, ordOk:false, ordMsg:"", riddle:false, riddleMsg:"",
+     finalMsg:"", done:false};
+}
+reset();
+
+const $=s=>document.querySelector(s);
+const app=$("#app");
+
+function header(title,sub){return `<section class="banner"><h2>${title}</h2>${sub?`<p>${sub}</p>`:""}</section>`}
+function tracker(){
+  return `<div class="evidence">${FRAGS.map((f,i)=>`<div class="frag ${S.frags[i]?"got":""}"><span class="ltr">${S.frags[i]?f.l:"?"}</span><span><b>Фрагмент ${i+1}</b><small>${S.frags[i]?"Здобуто: «"+f.l+"»":f.n}</small></span></div>`).join("")}</div>
+  <div class="stats"><span>Доказів: <strong>${S.ev}</strong></span><span>Хибних слідів: <strong>${S.err}</strong></span></div>`;
+}
+function mc(group,list,state){
+  return list.map((it,i)=>{
+    const st=state[i];
+    return `<div class="q"><div class="qt">${i+1}. ${it.q}</div><div class="opts">${it.o.map((o,k)=>{
+      let cls="opt"; if(st.a===k)cls+=" ok"; else if(st.w.includes(k))cls+=" bad";
+      return `<button class="${cls}" data-act="mc" data-g="${group}" data-i="${i}" data-k="${k}" ${st.a!==null||st.w.includes(k)?"disabled":""}>${o}</button>`}).join("")}</div>
+      ${st.a!==null?`<div class="fb ok">✓ ${it.fb} <b>+1 доказ</b></div>`:st.w.length?`<div class="fb bad">Хибний слід. Спробуй інший варіант.</div>`:""}</div>`;
+  }).join("");
+}
+function reward(i,text){
+  return `<div class="reward"><div>Ти здобув фрагмент шифру</div><div class="big">${FRAGS[i].l}</div><p>${text}</p>
+  <button data-act="next">${i<2?"Перейти до наступної станції":"Перейти до вироку"}</button></div>`;
+}
+
+function render(){
+  const s=S.stage; let h="";
+  if(s===0){
+    h=header("Справа № 1861","Квест-розслідування за романом Панаса Мирного «Хіба ревуть воли, як ясла повні?»")+
+    `<div class="card"><p class="lead">Полтава, 1880 рік. З губернського архіву зникла справа під кодовою назвою <span class="accent">«Пропаща сила»</span>. Цензори хотіли знищити рукопис роману, який наважився розповісти правду про долю селянина.</p>
+    <p>Ти — слідчий таємної архівної комісії. Пройди три станції, збери три фрагменти шифру й винеси остаточний вердикт у справі Чіпки Варениченка.</p>
+    <div class="note"><span class="ic">🔍</span><span>За кожну правильну відповідь отримуєш <b>доказ</b>. За кожну станцію — <b>фрагмент шифру</b>. Хибні сліди не зупиняють, але впливають на твоє звання наприкінці.</span></div>
+    <div class="center"><button data-act="next">Відкрити справу</button></div></div>`;
+  }
+  if(s===1){
+    const mcDone=S.mc1.every(x=>x.a!==null);
+    h=header("Станція 1. Сейф цензора","Письменник, псевдонім і доля рукопису")+tracker()+
+    `<div class="card"><h3>Зашифроване прізвище</h3>
+    <p>На сейфі цензора — табличка з дивним написом. Кажуть, тут сховано справжнє прізвище Панаса Мирного, який узяв псевдонім, щоб уникнути переслідувань.</p>
+    <div class="cipher">${enc(SECRET)}</div>
+    <p>Кожну літеру зсунуто на <b>одну позицію вперед</b> в українській абетці. Поверни літери на місце.</p>
+    <div class="alpha"><table><tr>${ALPHA.map(a=>`<td>${a}</td>`).join("")}</tr><tr>${ALPHA.map((a,i)=>`<td>${i+1}</td>`).join("")}</tr></table></div>
+    ${S.cipher?`<div class="fb ok">✓ Рудченко! Сейф відчинено. Ти отримуєш 🗝 ключ від архівної шафи. <b>+1 доказ</b></div>`:
+    `<div class="row"><input type="text" id="cin" placeholder="Справжнє прізвище" autocomplete="off"><button data-act="cipher">Відчинити сейф</button></div>
+    ${S.cipherMsg?`<div class="fb bad">${S.cipherMsg}</div>`:""}`}
+    </div>
+    ${S.cipher?`<div class="card"><h3>Картка архіву</h3><p>У сейфі — картка з питаннями. Відповідай, щоб відновити опис справи.</p>${mc(1,MC1,S.mc1)}</div>`:""}
+    ${mcDone?reward(0,"Перша літера пароля, яким захищено вирок."):""}`;
+  }
+  if(s===2){
+    const mDone=CHARS.every((c,i)=>S.m.ok[i]);
+    const qDone=S.mc2.every(x=>x.a!==null);
+    h=header("Станція 2. Хата в Пісках","Свідки, підозрювані й їхні прізвиська")+tracker()+
+    `<div class="card"><h3>Хто є хто</h3><p>Ключ відчиняє шафу з особовими картками. Від вогкості підписи перемішалися. Поверни кожному персонажеві його опис.</p>
+    <div class="match">${CHARS.map((c,i)=>{
+      const cls=S.m.ok[i]?"ok":(S.m.checked&&S.m.sel[i]!==undefined&&S.m.sel[i]!==""?"bad":"");
+      return `<div class="mrow ${cls}"><b>${c}</b><select data-act="sel" data-i="${i}" ${S.m.ok[i]?"disabled":""}><option value="">Обери опис…</option>${S.descOrder.map(d=>`<option value="${d}" ${String(S.m.sel[i])===String(d)?"selected":""}>${DESC[d]}</option>`).join("")}</select></div>`}).join("")}</div>
+    ${mDone?`<div class="fb ok">✓ Усі картки на місці. Ти знаходиш у шафі лист із двома цитатами.</div>`:`<div class="row" style="margin-top:12px"><button data-act="mcheck">Перевірити картки</button></div>`}
+    </div>
+    ${mDone?`<div class="card"><h3>Голоси свідків</h3><p>Визнач, кому належать слова з листа.</p>${mc(2,MC2,S.mc2)}</div>`:""}
+    ${mDone&&qDone?reward(1,"Друга літера пароля. Залишилась остання станція."):""}`;
+  }
+  if(s===3){
+    h=header("Станція 3. Зала суду","Композиція роману й останній свідок")+tracker()+
+    `<div class="card"><h3>Протокол засідання</h3><p>Аркуші протоколу розсипалися. Розташуй події роману в правильному порядку: від експозиції до розв’язки. Користуйся стрілками.</p>
+    <ol class="order">${S.ord.map((idx,pos)=>`<li class="${S.ordOk?"ok":""}"><span class="num">${pos+1}</span><span class="txt">${S.ordOk?`<span class="lbl">${ORDER[idx].l}</span>`:""}${ORDER[idx].t}</span>
+      ${S.ordOk?"":`<span class="mv"><button data-act="up" data-p="${pos}" aria-label="Вище" ${pos===0?"disabled":""}>▲</button><button data-act="down" data-p="${pos}" aria-label="Нижче" ${pos===4?"disabled":""}>▼</button></span>`}</li>`).join("")}</ol>
+    ${S.ordOk?`<div class="fb ok">✓ Протокол відновлено. Під ним — підпис таємничого свідка. <b>+2 докази</b></div>`:`<div class="row" style="margin-top:12px"><button data-act="ocheck">Перевірити протокол</button></div>${S.ordMsg?`<div class="fb bad">${S.ordMsg}</div>`:""}`}
+    </div>
+    ${S.ordOk?`<div class="card"><h3>Загадка свідка</h3>
+      <p class="quote">Я — попович, рано залишився сиротою з сестрою. Був на коні, був і під конем. Захопив владу в повіті й домігся, щоб Чіпку вигнали із земської управи. А допоміг мені в цьому Чижик, який знайшов стару справу Чіпки.</p>
+      <p>Хто я?</p>
+      ${S.riddle?`<div class="fb ok">✓ Шавкун. Свідок викритий. <b>+1 доказ</b></div>`:`<div class="row"><input type="text" id="rin" placeholder="Прізвище персонажа" autocomplete="off"><button data-act="riddle">Назвати свідка</button></div>${S.riddleMsg?`<div class="fb bad">${S.riddleMsg}</div>`:""}`}
+    </div>`:""}
+    ${S.riddle?reward(2,"Останні літери пароля. Тепер у тебе є все, щоб винести вирок."):""}`;
+  }
+  if(s===4){
+    if(!S.done){
+      h=header("Вирок","Склади пароль із трьох фрагментів")+tracker()+
+      `<div class="card"><p class="lead">Сургучна печать на останньому аркуші справи відкриється лише паролем. Склади його з літер, які ти здобув на станціях.</p>
+      <p>Підказка: так назвали Чіпку і так довелося назвати роман під час видання — «Пропаща …».</p>
+      <div class="row"><input type="text" id="fin" placeholder="Пароль" autocomplete="off"><button data-act="final">Зламати печать</button></div>
+      ${S.finalMsg?`<div class="fb bad">${S.finalMsg}</div>`:""}</div>`;
+    }else{
+      const r=S.err<=2?"Головний слідчий архіву":S.err<=5?"Старший інспектор":"Слідчий-стажер";
+      h=header("Справу закрито","«Пропаща сила» повернулася до архіву")+tracker()+
+      `<div class="card cert"><p>Посвідчення архівної комісії видано на звання</p><div class="rank">${r}</div>
+      <p>Зібрано доказів: <b>${S.ev}</b> · Хибних слідів: <b>${S.err}</b></p></div>
+      <div class="card"><h3>Висновок слідства</h3>
+      <p>Чіпка Варениченко — селянин-бунтівник, який шукав правди, але обрав злочин як спосіб боротьби з несправедливістю. Роман показує, що соціальні умови зумовлюють поведінку людини, а боротьба через злочин заперечується: сила, що могла стати добром, стала <span class="accent">пропащою</span>.</p>
+      <div class="note"><span class="ic">📌</span><span>Для ЗНО/НМТ запам’ятай: рід — епос; жанр — соціально-психологічний роман; напрям — реалізм; співавтор — брат Іван Білик; місце подій — село Піски; будова — 4 частини, 30 розділів; прототип Чіпки — Василь Гнидка.</span></div>
+      <div class="center"><button class="ghost" data-act="restart">Пройти квест ще раз</button></div></div>`;
+    }
+  }
+  app.innerHTML=h;
+}
+
+app.addEventListener("click",e=>{
+  const b=e.target.closest("[data-act]"); if(!b||b.tagName==="SELECT")return;
+  const a=b.dataset.act;
+  if(a==="next"){S.stage++;render();window.scrollTo({top:0,behavior:"smooth"});return}
+  if(a==="restart"){reset();render();window.scrollTo({top:0});return}
+  if(a==="cipher"){
+    const v=norm($("#cin").value);
+    if(v===SECRET){S.cipher=true;S.ev++;}
+    else{S.err++;S.cipherMsg=v?"Замок не піддається. Перевір, чи ти зсунув кожну літеру на одну позицію назад.":"Введи розшифроване прізвище.";}
+    render();return;
+  }
+  if(a==="mc"){
+    const g=+b.dataset.g,i=+b.dataset.i,k=+b.dataset.k;
+    const list=g===1?MC1:MC2, st=(g===1?S.mc1:S.mc2)[i];
+    if(k===list[i].c){st.a=k;S.ev++;}else{st.w.push(k);S.err++;}
+    if(g===1&&S.mc1.every(x=>x.a!==null))S.frags[0]=1;
+    if(g===2&&S.mc2.every(x=>x.a!==null))S.frags[1]=1;
+    render();return;
+  }
+  if(a==="mcheck"){
+    let wrong=0;
+    CHARS.forEach((c,i)=>{if(S.m.ok[i])return;const v=S.m.sel[i];if(String(v)===String(i)){S.m.ok[i]=true;S.ev++;}else if(v!==undefined&&v!==""){wrong++;}});
+    S.err+=wrong;S.m.checked=true;render();return;
+  }
+  if(a==="up"||a==="down"){
+    const p=+b.dataset.p,q=a==="up"?p-1:p+1;[S.ord[p],S.ord[q]]=[S.ord[q],S.ord[p]];S.ordMsg="";render();return;
+  }
+  if(a==="ocheck"){
+    const right=S.ord.filter((x,i)=>x===i).length;
+    if(right===5){S.ordOk=true;S.ev+=2;}else{S.err++;S.ordMsg=`На своїх місцях ${right} з 5 аркушів. Згадай: кульмінація — найвища точка напруги, а зав’язка запускає всі події.`;}
+    render();return;
+  }
+  if(a==="riddle"){
+    const v=norm($("#rin").value);
+    if(v==="ШАВКУН"){S.riddle=true;S.ev++;S.frags[2]=1;}else{S.err++;S.riddleMsg=v?"Це не той свідок. Шукай серед тих, хто мав владу в повіті.":"Введи прізвище персонажа.";}
+    render();return;
+  }
+  if(a==="final"){
+    const v=norm($("#fin").value);
+    if(v==="СИЛА"){S.done=true;S.ev++;}else{S.err++;S.finalMsg="Печать не піддається. Розташуй здобуті літери в порядку станцій.";}
+    render();window.scrollTo({top:0,behavior:"smooth"});return;
+  }
+});
+app.addEventListener("change",e=>{
+  const s=e.target; if(s.dataset.act==="sel"){S.m.sel[+s.dataset.i]=s.value;}
+});
+app.addEventListener("keydown",e=>{
+  if(e.key!=="Enter"||e.target.tagName!=="INPUT")return;
+  const map={cin:"cipher",rin:"riddle",fin:"final"};const act=map[e.target.id];
+  if(act)app.querySelector(`[data-act="${act}"]`).click();
+});
+render();
+</script>
+</body>
+</html>
